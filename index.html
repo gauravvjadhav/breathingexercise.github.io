@@ -155,12 +155,12 @@
 
       advancedButton.addEventListener('click', function() {
         baseTime = document.getElementById("inputTime").value;
-        setTimers.call(this, baseTime, 2 * baseTime, baseTime);
+        setTimers.call(this, baseTime, 2 * baseTime, 2 * baseTime);
       });
 
       expertButton.addEventListener('click', function() {
         baseTime = document.getElementById("inputTime").value;
-        setTimers.call(this, baseTime, 4 * baseTime, baseTime);
+        setTimers.call(this, baseTime, 4 * baseTime, 2 * baseTime);
       });
 
       startButton.addEventListener('click', function() {
@@ -183,11 +183,13 @@
           if (selectedButton.id === 'beginnerButton') {
             breathIn = hold = breathOut = inputValue;
           } else if (selectedButton.id === 'advancedButton') {
-            breathIn = breathOut = inputValue;
+            breathIn = inputValue;
             hold = 2 * inputValue;
+            breathOut = hold;
           } else if (selectedButton.id === 'expertButton') {
-            breathIn = breathOut = inputValue;
+            breathIn = inputValue;
             hold = 4 * inputValue;
+            breathOut = 2 * hold;
           }
           maxBreathInTime = breathIn;
           maxHoldTime = hold;
@@ -203,8 +205,8 @@
     <h1 class="mt-3">Breathing Timer</h1>
     <div class="buttons mb-3">
       <button id="beginnerButton" class="option-button btn btn-primary">Beginner <br> 1:1:1</button>
-      <button id="advancedButton" class="option-button btn btn-primary">Advanced <br> 1:2:1</button>
-      <button id="expertButton" class="option-button btn btn-primary">Expert <br> 1:4:1</button>
+      <button id="advancedButton" class="option-button btn btn-primary">Advanced <br> 1:2:2</button>
+      <button id="expertButton" class="option-button btn btn-primary">Expert <br> 1:4:2</button>
     </div>
 
     <input type="number" id="inputTime" value="10" class="form-control mb-3"/>
